@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaPeliculas>
+    <listaPeliculas>
+        <actores>WILL SMITH, JASON STATHAM</actores>
+        <director>TARANTINO</director>
+        <duracion>124</duracion>
+        <fechaEstreno>12-04-2023</fechaEstreno>
+        <titulo>LOS 7</titulo>
+    </listaPeliculas>
+    <listaPeliculas>
+        <actores>WILL SMITH</actores>
+        <director>TARANTINO</director>
+        <duracion>125</duracion>
+        <fechaEstreno>12-04-2024</fechaEstreno>
+        <titulo>LOS 8</titulo>
+    </listaPeliculas>
+    <listaPeliculas>
+        <duracion>0</duracion>
+    </listaPeliculas>
+</listaPeliculas>
