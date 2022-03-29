@@ -44,7 +44,7 @@ public class App extends Application {
         final Button botonAbrir = new Button("Abrir Archivo");
         paneRoot.getChildren().add(botonAbrir);
         botonAbrir.setOnAction((t) -> {       
-            UtilXML.abrirArchivoXML(stage, pelicula);
+            UtilXML.abrirArchivoXML(stage, pelicula, listaPeliculas);
         });
         
     }

@@ -30,21 +30,20 @@ public class UtilXML {
     
     }
     
-    public static void abrirArchivoXML(Stage stage, Pelicula pelicula){
+    public static void abrirArchivoXML(Stage stage, Pelicula pelicula, ListaPeliculas listaPeliculas){
     
         try {
-            JAXBContext context = JAXBContext.newInstance( Pelicula.class );
+            JAXBContext context = JAXBContext.newInstance( ListaPeliculas.class );
             FileChooser fileChooserListaPeliculas = new FileChooser();
             fileChooserListaPeliculas.setTitle("Abrir Archivo");
             File fileListaPeliculas = fileChooserListaPeliculas.showOpenDialog(stage);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            ListaPeliculas listaPeliculas = (ListaPeliculas)unmarshaller.unmarshal(
-                new File("src/Pelicula.xml") );
-            System.out.println(pelicula.getTitulo());
-            System.out.println(pelicula.getDirector());
-            System.out.println(pelicula.getActores());
-            System.out.println(pelicula.getDuracion());
-            System.out.println(pelicula.getFechaEstreno());
+            listaPeliculas = (ListaPeliculas)unmarshaller.unmarshal(fileListaPeliculas);
+            System.out.println(listaPeliculas.getListaPeliculas()/*.get(0).getTitulo()*/);
+//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDirector());
+//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getActores());
+//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDuracion());
+//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getFechaEstreno());
         } catch (JAXBException e) {
             e.printStackTrace();
         }
