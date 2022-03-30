@@ -10,19 +10,18 @@ import javax.xml.bind.Unmarshaller;
 
 public class UtilXML {
     
-    public static void guardarArchivoXML(Stage stage, ListaPeliculas listaPeliculas){
+    public static void guardarArchivoXML(Stage stage, Peliculas peliculas){
     
         JAXBContext contexto;
          try {
-            FileChooser fileChooserListaPeliculas = new FileChooser();
-            fileChooserListaPeliculas.setTitle("Guardar Archivo");
-            File fileListaPeliculas = fileChooserListaPeliculas.showSaveDialog(stage);
-            //File fileListaPeliculas = new File("ListaPeliculas.xml");
-            contexto = JAXBContext.newInstance(ListaPeliculas.class);
+            FileChooser fileChooserListaPeliculasExport = new FileChooser();
+            fileChooserListaPeliculasExport.setTitle("Guardar Archivo");
+            File fileListaPeliculasExport = fileChooserListaPeliculasExport.showSaveDialog(stage);
+            contexto = JAXBContext.newInstance(Peliculas.class);
             Marshaller marshaller = contexto.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(listaPeliculas, System.out);
-            marshaller.marshal(listaPeliculas, fileListaPeliculas);
+            marshaller.marshal(peliculas, System.out);
+            marshaller.marshal(peliculas, fileListaPeliculasExport);
          } catch (JAXBException ex) {
             System.out.println("Se ha producido un error");
             ex.printStackTrace();
@@ -30,24 +29,29 @@ public class UtilXML {
     
     }
     
-    public static void abrirArchivoXML(Stage stage, Pelicula pelicula, ListaPeliculas listaPeliculas){
+    public static Peliculas importarArchivoXML(Stage stage){
     
         try {
-            JAXBContext context = JAXBContext.newInstance( ListaPeliculas.class );
-            FileChooser fileChooserListaPeliculas = new FileChooser();
-            fileChooserListaPeliculas.setTitle("Abrir Archivo");
-            File fileListaPeliculas = fileChooserListaPeliculas.showOpenDialog(stage);
+            JAXBContext context = JAXBContext.newInstance( Peliculas.class );
+            Peliculas peliculas;
+            FileChooser fileChooserListaPeliculasImport = new FileChooser();
+            fileChooserListaPeliculasImport.setTitle("Importar Archivo");
+            File fileListaPeliculasImport = fileChooserListaPeliculasImport.showOpenDialog(stage);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            listaPeliculas = (ListaPeliculas)unmarshaller.unmarshal(fileListaPeliculas);
-            System.out.println(listaPeliculas.getListaPeliculas()/*.get(0).getTitulo()*/);
+            peliculas = (Peliculas)unmarshaller.unmarshal(fileListaPeliculasImport);
+            System.out.println(peliculas.getListaPeliculas().get(0));
+            return peliculas;
 //            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDirector());
 //            System.out.println(listaPeliculas.getListaPeliculas().get(0).getActores());
 //            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDuracion());
 //            System.out.println(listaPeliculas.getListaPeliculas().get(0).getFechaEstreno());
+           
         } catch (JAXBException e) {
             e.printStackTrace();
+            return null;
         }
     
+        
     }
     
 }

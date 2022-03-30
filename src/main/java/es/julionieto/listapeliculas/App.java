@@ -1,9 +1,10 @@
 package es.julionieto.listapeliculas;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -11,40 +12,42 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        Pane paneRoot = new Pane();  
-        Scene scene = new Scene(paneRoot, 640, 480);
+        HBox root = new HBox();
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(10);
+        Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();      
         
         Pelicula pelicula = new Pelicula();
+        Pelicula pelicula0 = new Pelicula();
+        pelicula0.setTitulo("Los 7");
+        pelicula0.setDirector("Tarantino");
+        pelicula0.setActores("Will Smith, Jason Statham");
+        pelicula0.setDuracion(124);
+        pelicula0.setFechaEstreno("12-04-2023");
         Pelicula pelicula1 = new Pelicula();
-        pelicula1.setTitulo("Los 7");
+        pelicula1.setTitulo("Los 8");
         pelicula1.setDirector("Tarantino");
-        pelicula1.setActores("Will Smith, Jason Statham");
-        pelicula1.setDuracion(124);
-        pelicula1.setFechaEstreno("12-04-2023");
-        Pelicula pelicula2 = new Pelicula();
-        pelicula2.setTitulo("Los 8");
-        pelicula2.setDirector("Tarantino");
-        pelicula2.setActores("Will Smith");
-        pelicula2.setDuracion(125);
-        pelicula2.setFechaEstreno("12-04-2024");
+        pelicula1.setActores("Will Smith");
+        pelicula1.setDuracion(125);
+        pelicula1.setFechaEstreno("12-04-2024");
         
         //Creamos la lista y añadimos las peliculas
-        ListaPeliculas listaPeliculas = new ListaPeliculas();
-        listaPeliculas.getListaPeliculas().add(pelicula1);
-        listaPeliculas.getListaPeliculas().add(pelicula2);
+        Peliculas peliculas = new Peliculas();
+        peliculas.getListaPeliculas().add(pelicula0);
+        peliculas.getListaPeliculas().add(pelicula1);
         
         final Button botonGuardar = new Button("Guardar Archivo");
-        botonGuardar.setLayoutX(100);
-        paneRoot.getChildren().add(botonGuardar);
+        root.getChildren().add(botonGuardar);
         botonGuardar.setOnAction((t) -> {       
-            UtilXML.guardarArchivoXML(stage, listaPeliculas);
+            UtilXML.guardarArchivoXML(stage, peliculas);
         });
-        final Button botonAbrir = new Button("Abrir Archivo");
-        paneRoot.getChildren().add(botonAbrir);
-        botonAbrir.setOnAction((t) -> {       
-            UtilXML.abrirArchivoXML(stage, pelicula, listaPeliculas);
+        final Button botonImportar = new Button("Importar Archivo");
+        root.getChildren().add(botonImportar);
+        botonImportar.setOnAction((t) -> {       
+            Peliculas peliculasImport = UtilXML.importarArchivoXML(stage);
+            System.out.println("Numero de peliculas importadas: " + peliculasImport.getListaPeliculas().size());
         });
         
     }
