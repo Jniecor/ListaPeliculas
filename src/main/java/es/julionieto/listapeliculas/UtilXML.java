@@ -39,19 +39,13 @@ public class UtilXML {
             File fileListaPeliculasImport = fileChooserListaPeliculasImport.showOpenDialog(stage);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             peliculas = (Peliculas)unmarshaller.unmarshal(fileListaPeliculasImport);
-            System.out.println(peliculas.getListaPeliculas().get(0));
-            return peliculas;
-//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDirector());
-//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getActores());
-//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getDuracion());
-//            System.out.println(listaPeliculas.getListaPeliculas().get(0).getFechaEstreno());
-           
+            for (int i = 0; i < peliculas.getListaPeliculas().size(); i++){
+                System.out.println(peliculas.getListaPeliculas().get(0));
+            }
+            return peliculas;           
         } catch (JAXBException e) {
             e.printStackTrace();
             return null;
         }
-    
-        
-    }
-    
+    }    
 }

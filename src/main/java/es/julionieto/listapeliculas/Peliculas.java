@@ -22,13 +22,12 @@ public class Peliculas {
     
     }
     
-    public void unirPeliculas(){
-
-//        for (int i = 0; i < peliculasImport.getListaPeliculas().size(); i++){
-//        
-//            
-//            
-//        }
+    public void unirPeliculas(Peliculas peliculasNuevas){
+        
+        //this.getListaPeliculas() <- peliculasNuevos.getListaPeliculas;
+        for (int i = 0; i < peliculasNuevas.getListaPeliculas().size(); i++){
+            this.getListaPeliculas().add(peliculasNuevas.getListaPeliculas().get(i));
+        }
 
     }
     

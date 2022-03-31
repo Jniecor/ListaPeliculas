@@ -75,13 +75,13 @@ public class Pelicula {
     @Override
     public String toString(){
     
-        String r = "";
-        r += "Titulo: " + titulo + "\n";
-        r += "Director: " + director + "\n";
-        r += "Actores: " + actores + "\n";
-        r += "Duracion : " + duracion + "\n";
-        r += "Fecha de estreno: " + fechaEstreno + "\n";
-        return r;
+        String consola = "";
+        consola += "Titulo: " + titulo + "\n";
+        consola += "Director: " + director + "\n";
+        consola += "Actores: " + actores + "\n";
+        consola += "Duracion : " + duracion + "\n";
+        consola += "Fecha de estreno: " + fechaEstreno + "\n";
+        return consola;
     
     }
     

@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -12,12 +12,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        HBox root = new HBox();
+        VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
-        stage.show();      
+        stage.show();
         
         Pelicula pelicula = new Pelicula();
         Pelicula pelicula0 = new Pelicula();
@@ -48,6 +48,19 @@ public class App extends Application {
         botonImportar.setOnAction((t) -> {       
             Peliculas peliculasImport = UtilXML.importarArchivoXML(stage);
             System.out.println("Numero de peliculas importadas: " + peliculasImport.getListaPeliculas().size());
+            peliculas.unirPeliculas(peliculasImport);
+        });
+        
+        final Button botonSiguiente = new Button("Siguiente");
+        root.getChildren().add(botonSiguiente);
+        botonSiguiente.setOnAction((t) -> {       
+            
+        });
+        
+        final Button botonAnterior = new Button("Anterior");
+        root.getChildren().add(botonAnterior);
+        botonAnterior.setOnAction((t) -> {       
+            
         });
         
     }
