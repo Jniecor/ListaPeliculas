@@ -45,7 +45,8 @@ public class UtilXML {
             return peliculas;           
         } catch (JAXBException e) {
             e.printStackTrace();
-            return null;
+            return null;            
         }
-    }    
+    }
+
 }
