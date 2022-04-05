@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,7 +18,7 @@ public class App extends Application {
     public void start(Stage stage) {
         
         VBox root = new VBox();
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_LEFT);
         root.setSpacing(10);
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
@@ -27,9 +27,11 @@ public class App extends Application {
         hRoot.setAlignment(Pos.CENTER);
         hRoot.setSpacing(10);
         
-        TextArea textArea = new TextArea();
-        root.getChildren().add(textArea);
-        textArea.setEditable(false);
+//        TextArea textArea = new TextArea();
+//        root.getChildren().add(textArea);
+//        textArea.setEditable(false);
+        Label label = new Label();
+        root.getChildren().add(label);
         root.getChildren().add(hRoot);
         
         Pelicula pelicula = new Pelicula();
@@ -57,10 +59,11 @@ public class App extends Application {
             try {
                 UtilXML.guardarArchivoXML(stage, peliculas);
             } catch(Exception ex){
+                ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Error");
-                alert.setContentText("Hay un error dentro del botón guardar");
+                alert.setContentText("Ha habido un error con el botón guardar");
                 alert.showAndWait();
             }
         });
@@ -72,10 +75,11 @@ public class App extends Application {
                 System.out.println("Numero de peliculas importadas: " + peliculasImport.getListaPeliculas().size());
                 peliculas.unirPeliculas(peliculasImport);
             } catch(Exception ex){
+                ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Error");
-                alert.setContentText("Hay un error dentro del botón importar");
+                alert.setContentText("Ha habido un error con el botón importar");
                 alert.showAndWait();
             }
         });
@@ -88,12 +92,15 @@ public class App extends Application {
                 peliculaActual = 0;
             }
             try {
-                textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+//                textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+                label.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+
             } catch(Exception ex){
+                ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Error");
-                alert.setContentText("Hay un error dentro del botón anterior");
+                alert.setContentText("Ha habido un error con el botón anterior");
                 alert.showAndWait();
             }
         });
@@ -106,17 +113,21 @@ public class App extends Application {
                 peliculaActual = peliculas.getListaPeliculas().size() -1 ;
             }
             try {
-                textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+//                textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+                label.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+
             } catch(Exception ex){
+                ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Error");
-                alert.setContentText("Hay un error dentro del botón siguiente");
+                alert.setContentText("Ha habido un error con el botón siguiente");
                 alert.showAndWait();
             }
         });
         
-        textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+//        textArea.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
+        label.setText(peliculas.getListaPeliculas().get(peliculaActual).toString());
         
     }
     
